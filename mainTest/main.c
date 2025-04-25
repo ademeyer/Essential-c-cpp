@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 typedef struct data
 {
@@ -21,12 +20,12 @@ int cmp(const void* a, const void* b)
 
 int min_pieces(int* original, int* desired, int length)
 {
-    	const int id = length;   
-    	data_t valIdx1 [id];
-    	data_t valIdx2 [id];
+    	const int n = length;   
+    	data_t* valIdx1 = malloc(sizeof(data_t) * n);
+    	data_t* valIdx2 = malloc(sizeof(data_t) * n);
     	
 	// Bind array's value with index.
-    	for(int i = 0; i < length; ++i)
+    	for(int i = 0; i < n; ++i)
     	{
         	data_t t1 = {i , original[i]};
         	data_t t2 = {i , desired[i]};
@@ -35,15 +34,15 @@ int min_pieces(int* original, int* desired, int length)
     	}
         
     	// Sort valIdx1 and valIdx2 using .value
-    	qsort(&valIdx1, length, sizeof(data_t), cmp);
-    	qsort(&valIdx2, length, sizeof(data_t), cmp);
+    	qsort(valIdx1, n, sizeof(data_t), cmp);
+    	qsort(valIdx2, n, sizeof(data_t), cmp);
     	
 	// Allocate space for tracking diff of sorted valIdx1[&2]
-    	int* set = malloc(sizeof(int) * length);
+    	int* set = malloc(sizeof(int) * n);
     	int idx = 0;
 	
 	// Get diff in sorted valIdxs' indexes
-	for(int i = 0; i < length; ++i)
+	for(int i = 0; i < n; ++i)
 	{
 		data_t dt1 = valIdx1[i];
 		data_t dt2 = valIdx2[i];
@@ -56,6 +55,8 @@ int min_pieces(int* original, int* desired, int length)
     	
 	// Free allocations
 	free(set);
+	free(valIdx1);
+	free(valIdx2);
 
     	return idx;
 }
