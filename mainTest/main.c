@@ -20,44 +20,58 @@ int cmp(const void* a, const void* b)
 
 int min_pieces(int* original, int* desired, int length)
 {
+	if(!original || !desired || length == 0) return 0;
+
     	const int n = length;   
     	data_t* valIdx1 = malloc(sizeof(data_t) * n);
     	data_t* valIdx2 = malloc(sizeof(data_t) * n);
-    	
-	// Bind array's value with index.
-    	for(int i = 0; i < n; ++i)
-    	{
-        	data_t t1 = {i , original[i]};
-        	data_t t2 = {i , desired[i]};
-        	valIdx1[i] = t1;
-        	valIdx2[i] = t2;
-    	}
-        
-    	// Sort valIdx1 and valIdx2 using .value
-    	qsort(valIdx1, n, sizeof(data_t), cmp);
-    	qsort(valIdx2, n, sizeof(data_t), cmp);
-    	
-	// Allocate space for tracking diff of sorted valIdx1[&2]
-    	int* set = malloc(sizeof(int) * n);
     	int idx = 0;
 	
-	// Get diff in sorted valIdxs' indexes
-	for(int i = 0; i < n; ++i)
+	// If allocations are successful
+	if(valIdx1 && valIdx2)
 	{
-		data_t dt1 = valIdx1[i];
-		data_t dt2 = valIdx2[i];
-		int diff = dt1.index - dt2.index;
-		if(idx > 0 && set[idx - 1] == diff)
-			continue;
-		else
-			set[idx++] = diff;
-	}
+		// Bind array's value with index.
+    		for(int i = 0; i < n; ++i)
+    		{
+        		data_t t1 = {i , original[i]};
+        		data_t t2 = {i , desired[i]};
+        	
+			valIdx1[i] = t1;
+        		valIdx2[i] = t2;
+    		}
+        
+    		// Sort valIdx1 and valIdx2 using .value
+    		qsort(valIdx1, n, sizeof(data_t), cmp);
+    		qsort(valIdx2, n, sizeof(data_t), cmp);
     	
-	// Free allocations
-	free(set);
-	free(valIdx1);
-	free(valIdx2);
+		// Allocate space for tracking diff of sorted valIdx1[&2]
+    		int* set = malloc(sizeof(int) * n);
 
+		// If allocation is successful
+		if(set)
+		{	
+			// Get diff in sorted valIdxs' indexes
+			for(int i = 0; i < n; ++i)
+			{
+				data_t dt1 = valIdx1[i];
+				data_t dt2 = valIdx2[i];
+				int diff = dt1.index - dt2.index;
+				if(idx > 0 && set[idx - 1] == diff)
+					continue;
+				else
+					set[idx++] = diff;
+			}
+			// Free allocation
+			free(set);
+		}
+	}
+
+	// Free allocations
+	if(valIdx1)
+		free(valIdx1);
+	if(valIdx2)
+		free(valIdx2);
+	
     	return idx;
 }
 
