@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
       worker.queueTask(wrapper, i, ref(results[i])); 
     
     while(!worker.taskCompleted())
-      std::this_thread::sleep_for(std::chrono::microseconds(10));
+      this_thread::sleep_for(chrono::microseconds(10));
   }
 
   const auto timeTaken = chrono::steady_clock::now() - start;
