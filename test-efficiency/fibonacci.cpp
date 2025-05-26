@@ -80,7 +80,7 @@ const int NUM = 50;
 
 int main(int argc, char* argv[])
 {
-  auto start = chrono::steady_clock::now();
+  const auto start = chrono::steady_clock::now();
   vector<ULL> results(NUM + 1, 0);
 
   {
