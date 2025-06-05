@@ -16,17 +16,18 @@ public:
 class Shapes
 {
 public:
-  set<int> circle_raduis;
+  set<int> circle_radius;
   set<int> square_side;
 
-  friend Shapes operator+(const Shapes s1, const Circle c)
+  friend Shapes operator+(const Shapes& s1, const Circle& c)
   {
     Shapes sh;
-    sh.circle_raduis = s1.circle_raduis;
-    sh.circle_raduis.insert(c.radius);
+    sh.circle_radius = s1.circle_radius;
+    sh.circle_radius.insert(c.radius);
     return sh;
   }
-  friend Shapes operator+(const Shapes s1, const Square c)
+
+  friend Shapes operator+(const Shapes& s1, const Square& c)
   {
     Shapes sh;
     sh.square_side = s1.square_side;
@@ -42,13 +43,13 @@ int main()
   Square sq;
   sq.side = 4;
   Shapes sh;
-  sh.circle_raduis = set<int>{1, 3, 4};
+  sh.circle_radius = set<int>{1, 3, 4};
   sh.square_side = set<int>{8, 9};
 
   Shapes sh1 = sh + c;
   Shapes sh2 = sh + sq;
 
-  for (const auto s : sh1.circle_raduis)
+  for (const auto s : sh1.circle_radius)
     cout << s << ", ";
   cout << endl;
 
