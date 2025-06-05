@@ -87,8 +87,8 @@ void print_balls(const vector<stack<ball_t>>& b)
 
 void sort_balls(vector<stack<ball_t>>& balls)
 {
-  if(balls.empty()) return;             // no balls, no show
-  map<ball_t, int> balls_mp;  // balls type, number
+  if(balls.empty()) return;     // no balls, no show
+  map<ball_t, int> balls_mp;    // balls type, number
   for(auto& st : balls)
   {
     while(!st.empty())
@@ -103,9 +103,10 @@ void sort_balls(vector<stack<ball_t>>& balls)
   {
     if (mp.second != nStack) 
     {
+      /* This should never happen, but never say never! */
      cerr << "we got a different no. of balls:" << mp.second 
           << " from expected: " << nStack <<  endl;
-     // return;
+     return;
     }
 
     for(int cnt = 0; cnt < mp.second; ++cnt)
