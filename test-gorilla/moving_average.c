@@ -13,7 +13,8 @@ void cal_mov_avg(int size, int vec[], int window_size, int* n, int** result)
     cum += vec[i];
     if((i + 1) >= window_size)
     {
-      (*result)[*n] = round(cum / window_size);
+      double g = cum / (double) window_size;
+      (*result)[*n] = lround(g);
       ++*n;
       cum -= vec[i + 1 - window_size]; // remove the head;
     }
@@ -25,7 +26,7 @@ int main()
   int* result = (int*)malloc(20 * sizeof(int));
   int n = 0;
   
-  int arr[] = {1,2,3,4,5,6,8};
+  int arr[] = {1,2,3,4};
   int size = sizeof(arr) / sizeof(arr[0]);
   int window_size = 2;
 
