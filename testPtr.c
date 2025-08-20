@@ -36,9 +36,10 @@ int main()
   printf("ptra address: %d, P value: %d, *p value: %d\n", ptra, P, *p);
 
   printf("ptra address: %d, ptra value: %d\n", ptra, *ptra);
-
+  uint8_t *j = (uint8_t*)ptra;
+  *j = 4;
   // ptra = &b;
-  // printf("ptra address: %d, ptra value: %d\n", ptra, *ptra);
+  printf("ptra address: %d, ptra value: %d\n", ptra, *ptra);
 
   ptr = &a;
   printf("ptr address: %d, ptr value: %d\n", ptr, *ptr);
@@ -47,5 +48,10 @@ int main()
   ptr = &b;
   printf("ptr address: %d, ptr value: %d\n", ptr, *ptr);
   printf("a value: %d, b value: %d\n", a, b);
+
+  int arr[] = {234, 569};
+  void* vptr = arr;
+
+  printf("%d, %d\n", ((int*)vptr)[0], ((int*)vptr)[1]);
   return 0;
 }
