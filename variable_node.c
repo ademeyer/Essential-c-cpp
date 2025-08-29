@@ -1,14 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-/*
-typedef enum
-{ 
-  U8 = sizeof(uint8_t),
-  U16 = sizeof(uint16_t),
-  U32 = sizeof(uint32_t)
-} type_t;
-*/
+
 struct Node
 {
   void* data;
