@@ -1,1 +1,5 @@
+.gitignore
+.vscode
 bin
+*.out
+*.a
