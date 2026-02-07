@@ -23,3 +23,27 @@ SOLID design principle:
     depend on low-level modules. Both should depend
     on abstractions.
 
+Design Pattern in C++:
+  1. Creational Design Pattern
+  2. Structural Design Pattern
+  3. Behavioural Design Pattern
+ 
+1. Creational Design Pattern:
+  a. Factory Method
+  b. Abstract Factory
+  c. Builder 
+  d. Prototype
+  e. Singleton
+
+
+2. Structural Design Pattern
+  a. The Adapter
+  b. The Bridge
+  c. The Composite
+  d. The Decorator
+  e. The Facade
+  f. The Flyweight
+  g. The Proxy
+
+3. Behavioural Design Pattern
+  a. 
