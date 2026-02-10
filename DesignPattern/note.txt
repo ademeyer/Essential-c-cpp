@@ -46,4 +46,15 @@ Design Pattern in C++:
   g. The Proxy
 
 3. Behavioural Design Pattern
-  a. 
+  a. Chain of Responsibility
+  b. Command
+  c. Mediator
+  d. Observer
+  e. Interpreter
+  f. State
+  g. Strategy
+  h. Template Method
+  i. Visitor
+  j. Iterator
+  k. Memento
+  l. Null-Object 
